@@ -6,10 +6,10 @@ RUN groupadd www && useradd -g www -s /sbin/nologin -M www
 RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-devel libzip  curl-devel   libXpm-devel  readline-devel   libjpeg-devel  libpng-devel  wget  tar  gmp-devel \
 && wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/attic/libmcrypt/libmcrypt-2.5.7.tar.gz && tar -zxf libmcrypt-2.5.7.tar.gz && cd libmcrypt-2.5.7 && ./configure prefix=/usr/local && make && make install
 
-RUN echo '/usr/local/lib64 \
-/usr/local/lib \
-/usr/lib \
-/usr/lib64'>>/etc/ld.so.conf&&ldconfig -v
+RUN { echo "/usr/local/lib64 ";\
+      ehoc "/usr/local/lib ";\
+     ehoc " /usr/lib";\
+     ehoc "/usr/lib64" || tee -a etc/ld.so.conf&&ldconfig -v
 
 RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 && tar zxf php-5.6.32.tar.gz \
@@ -22,7 +22,9 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 --with-mhash --enable-zip --with-pcre-regex \
 --with-mysql --with-mysqli  --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \ 
 --with-gd --with-jpeg-dir \
---with-gettext --enable-mbstring --with-iconv --with-mcrypt --with-mhash --with-openssl --enable-bcmath --enable-soap --with-libxml-dir --enable-pcntl --enable-shmop --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-sockets --with-curl --with-zlib --enable-zip --with-bz2 --with-readline --without-sqlite3 --without-pdo-sqlite --with-pear \
+--with-gettext ]--with-iconv --with-openssl \ 
+--enable-bcmath --enable-soap --with-libxml-dir --enable-shmop --enable-sysvmsg \
+  --with-readline --without-sqlite3 --without-pdo-sqlite --with-pear \
 && make all install
 
 RUN rm -f ../php-5.6.32.tar.gz
