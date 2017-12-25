@@ -7,9 +7,9 @@ RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-
 && wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/attic/libmcrypt/libmcrypt-2.5.7.tar.gz && tar -zxf libmcrypt-2.5.7.tar.gz && cd libmcrypt-2.5.7 && ./configure prefix=/usr/local && make && make install
 
 RUN { echo "/usr/local/lib64 ";\
-      ehoc "/usr/local/lib ";\
-     ehoc " /usr/lib";\
-     ehoc "/usr/lib64" || tee -a etc/ld.so.conf&&ldconfig -v
+      echo "/usr/local/lib ";\
+     echo " /usr/lib";\
+     echo "/usr/lib64" || tee -a etc/ld.so.conf&&ldconfig -v
 
 RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 && tar zxf php-5.6.32.tar.gz \
