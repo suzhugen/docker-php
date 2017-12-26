@@ -1,4 +1,4 @@
-FROM registry.cn-hangzhou.aliyuncs.com/gen/php
+FROM centos:7
 USER root
 
 RUN set -xe; \
