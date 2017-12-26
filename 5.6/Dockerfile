@@ -28,7 +28,6 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 && cd php-5.6.32 && chmod -R 777 configure \
 && ./configure --prefix=/usr/local/php  --enable-fpm  --with-fpm-user=www --with-fpm-group=www \
 --with-mcrypt --enable-pdo \
---with-freetype-dir=/usr/local/freetype \
 --enable-mbstring  --with-curl --disable-debug  --disable-rpath \
 --enable-inline-optimization --with-bz2  --with-zlib --enable-sockets \
 --enable-sysvsem --enable-sysvshm --enable-pcntl --enable-mbregex --enable-opcache=no \
@@ -38,6 +37,7 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 --with-gettext --with-iconv --with-openssl \ 
 --enable-bcmath --enable-soap --with-libxml-dir --enable-shmop --enable-sysvmsg \
   --with-readline --without-sqlite3 --without-pdo-sqlite --with-pear \
+--with-freetype-dir=/usr/local/freetype \
 && make all install
 
 
