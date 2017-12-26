@@ -14,7 +14,8 @@ RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-
 RUN { echo "/usr/local/lib64 ";\
       echo "/usr/local/lib ";\
      echo " /usr/lib";\
-     echo "/usr/lib64"; } | tee -a /etc/ld.so.conf && ldconfig -v
+     echo "/usr/lib64"; } | 
+     tee -a /etc/ld.so.conf && ldconfig -v
 
 RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 && tar zxf php-5.6.32.tar.gz \
@@ -37,13 +38,15 @@ RUN { echo 'PATH=$PATH:/usr/local/php/bin'; \
       echo 'export PATH';\
     } | tee -a  /etc/profile && source /etc/profile 
 
+RUN mkdir -p /usr/local/php/etc/fpm.d/
+
 COPY php-fpm.conf /usr/local/php/etc/php-fpm.conf
+COPY zz-docker.conf /usr/local/php/etc/fpm.d/zz-docker.conf
 
 # RUN cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf  
 RUN  cp /usr/local/php/sbin/php-fpm /usr/local/bin/php-fpm && chmod +x /usr/local/bin/php-fpm \
 &&  cp /usr/local/php/bin/php /usr/local/bin/php && chmod +x /usr/local/bin/php
 
-RUN mkdir -p /usr/local/php/etc/fpm.d/
 
 RUN mkdir -p /data/www && chmod -R 655 /data/www
 VOLUME [ "/data/www" ]
