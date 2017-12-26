@@ -32,7 +32,7 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
   --with-readline --without-sqlite3 --without-pdo-sqlite --with-pear \
 && make all install
 
-RUN rm -f ../php-5.6.32.tar.gz
+
 RUN { echo 'PATH=$PATH:/usr/local/php/bin'; \
       echo 'export PATH';\
     } | tee -a  /etc/profile && source /etc/profile 
@@ -53,6 +53,10 @@ VOLUME [ "/data/www" ]
 
 COPY entrypoint-my /usr/local/bin/
 RUN chmod -R 777 /usr/local/bin/entrypoint-my
+
+# clear rubbish
+RUN rm -f ../php-5.6.32.tar.gz
+RUN rm -rf /php-5.6.32/
 
 EXPOSE 9000 
 
