@@ -2,8 +2,8 @@ FROM registry.cn-hangzhou.aliyuncs.com/gen/php
 USER root
 
 RUN if id www $1 >/dev/null 2>&1; then \
-    else 
-      groupadd www && useradd -g www -s /sbin/nologin -M www  
+    else \
+      groupadd www && useradd -g www -s /sbin/nologin -M www  \
     fi
 
 RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-devel libzip  curl-devel   libXpm-devel  readline-devel   libjpeg-devel  libpng-devel  wget  tar  gmp-devel \
