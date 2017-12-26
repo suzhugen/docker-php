@@ -1,5 +1,5 @@
 FROM registry.cn-hangzhou.aliyuncs.com/gen/php
-USER www
+USER root
 
 RUN groupadd www && useradd -g www -s /sbin/nologin -M www  
 
