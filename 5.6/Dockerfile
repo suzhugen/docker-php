@@ -22,7 +22,7 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 --with-mhash --enable-zip --with-pcre-regex \
 --with-mysql --with-mysqli  --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \ 
 --with-gd --with-jpeg-dir \
---with-gettext ]--with-iconv --with-openssl \ 
+--with-gettext --with-iconv --with-openssl \ 
 --enable-bcmath --enable-soap --with-libxml-dir --enable-shmop --enable-sysvmsg \
   --with-readline --without-sqlite3 --without-pdo-sqlite --with-pear \
 && make all install
