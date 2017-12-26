@@ -2,6 +2,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/gen/php
 USER root
 
 RUN if id www $1 >/dev/null 2>&1; then \
+    echo 'exist user' \
     else \
       groupadd www && useradd -g www -s /sbin/nologin -M www  \
     fi
