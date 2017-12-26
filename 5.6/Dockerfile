@@ -14,7 +14,7 @@ RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-
  && tar -zxf libmcrypt-2.5.7.tar.gz && cd libmcrypt-2.5.7 && ./configure prefix=/usr/local \
  && make && make install
 
-RUN wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.0.tar.bz2 \ 
+RUN wget http://mirror.csclub.uwaterloo.ca/nongnu/freetype/freetype-2.4.0.tar.bz2 \ 
 && tar -jxf freetype-2.4.0.tar.bz2 && cd freetype-2.4.0 \
 && ./configure --prefix=/usr/local/freetype && make && make install
 
