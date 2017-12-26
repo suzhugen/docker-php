@@ -1,13 +1,12 @@
 FROM registry.cn-hangzhou.aliyuncs.com/gen/php
 USER root
 
-RUN { if ! id www ;then 
-    echo "create user " 
-    groupadd www 
-    useradd -g www -s /sbin/nologin -M www  
-else 
-echo 'jm' 
-fi }
+RUN set -xe; \
+if ! id www ;then \
+    echo "create user " \
+    groupadd www \
+    useradd -g www -s /sbin/nologin -M www  \
+fi;
 
 RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-devel libzip  curl-devel   libXpm-devel  readline-devel   libjpeg-devel  libpng-devel  wget  tar  gmp-devel \
 && wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/attic/libmcrypt/libmcrypt-2.5.7.tar.gz && tar -zxf libmcrypt-2.5.7.tar.gz && cd libmcrypt-2.5.7 && ./configure prefix=/usr/local && make && make install
