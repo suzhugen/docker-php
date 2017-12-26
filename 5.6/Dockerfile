@@ -1,5 +1,5 @@
-FROM centos:7
-USER root
+FROM registry.cn-hangzhou.aliyuncs.com/gen/php
+USER www
 
 RUN groupadd www && useradd -g www -s /sbin/nologin -M www  
 
@@ -30,8 +30,10 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 RUN rm -f ../php-5.6.32.tar.gz
 RUN { echo 'PATH=$PATH:/usr/local/php/bin'; \
       echo 'export PATH';\
-    } | tee -a  /etc/profile && source /etc/profile
+    } | tee -a  /etc/profile && source /etc/profile 
 
+RUN cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf  \
+&& cp sapi/fpm/init.d.php-fpm /usr/local/bin/php-fpm && chmod +x /usr/local/bin/php-fpm 
 
 RUN mkdir -p /data/www && chmod -R 655 /data/www
 VOLUME [ "/data/www" ]
