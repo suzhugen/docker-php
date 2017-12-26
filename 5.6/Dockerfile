@@ -43,6 +43,7 @@ COPY php-fpm.conf /usr/local/php/etc/php-fpm.conf
 RUN  cp /usr/local/php/sbin/php-fpm /usr/local/bin/php-fpm && chmod +x /usr/local/bin/php-fpm \
 &&  cp /usr/local/php/bin/php /usr/local/bin/php && chmod +x /usr/local/bin/php
 
+RUN mkdir -p /usr/local/php/etc/fpm.d/
 
 RUN mkdir -p /data/www && chmod -R 655 /data/www
 VOLUME [ "/data/www" ]
