@@ -3,9 +3,9 @@ USER root
 
 RUN set -xe; \
 if ! id www ;then \
-    echo "create user " \
-    groupadd www \
-    useradd -g www -s /sbin/nologin -M www  \
+    echo "create user "; \
+    groupadd www; \
+    useradd -g www -s /sbin/nologin -M www;  \
 fi;
 
 RUN yum install -y libxml2-devel  gcc glibc  openssl openssl-devel  bzip2 bzip2-devel libzip  curl-devel   libXpm-devel  readline-devel   libjpeg-devel  libpng-devel  wget  tar  gmp-devel \
