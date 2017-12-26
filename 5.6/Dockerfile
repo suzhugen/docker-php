@@ -30,7 +30,7 @@ RUN wget http://cn2.php.net/distributions/php-5.6.32.tar.gz \
 RUN rm -f ../php-5.6.32.tar.gz
 RUN { echo 'PATH=$PATH:/usr/local/php/bin'; \
       echo 'export PATH';\
-    } | tree -a  /etc/profile && source /etc/profile
+    } | tee -a  /etc/profile && source /etc/profile
 
 
 RUN mkdir -p /data/www && chmod -R 655 /data/www
