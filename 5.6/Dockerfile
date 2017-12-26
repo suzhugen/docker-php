@@ -37,8 +37,10 @@ RUN { echo 'PATH=$PATH:/usr/local/php/bin'; \
       echo 'export PATH';\
     } | tee -a  /etc/profile && source /etc/profile 
 
-RUN cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf  \
-&&  cp /php-5.6.32/sapi/fpm/init.d.php-fpm /usr/local/bin/php-fpm && chmod +x /usr/local/bin/php-fpm \
+COPY php-fpm.conf /usr/local/php/etc/php-fpm.conf
+
+# RUN cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf  
+RUN  cp /usr/local/php/sbin/php-fpm /usr/local/bin/php-fpm && chmod +x /usr/local/bin/php-fpm \
 &&  cp /usr/local/php/bin/php /usr/local/bin/php && chmod +x /usr/local/bin/php
 
 
